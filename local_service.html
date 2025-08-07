@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Service</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f9ff;
+      color: #333;
+    }
+
+    header {
+      background: #4dabf7;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    nav {
+      background: #228be6;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+
+    .section h2 {
+      color: #228be6;
+      margin-top: 0;
+    }
+
+    ul.services-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.services-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      ul.services-list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Local Service</h1>
+  </header>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="section" id="services">
+    <h2>Services</h2>
+    <ul class="services-list">
+      <li><span>Car washing</span><span>$15</span></li>
+      <li><span>Garden cleaning</span><span>$20</span></li>
+      <li><span>Window cleaning</span><span>$10</span></li>
+      <li><span>Mailbox cleaning</span><span>$5</span></li>
+      <li><span>Trash bin rinsing</span><span>$8</span></li>
+      <li><span>Patio sweeping</span><span>$10</span></li>
+      <li><span>Toy cleanup</span><span>$6</span></li>
+      <li><span>Garage tidying</span><span>$15</span></li>
+      <li><span>Bike cleaning</span><span>$8</span></li>
+      <li><span>Recycling sorting</span><span>$6</span></li>
+      <li><span>Sweeping driveway</span><span>$9</span></li>
+      <li><span>Organizing books</span><span>$7</span></li>
+      <li><span>Dusting shelves</span><span>$6</span></li>
+      <li><span>Cleaning outdoor furniture</span><span>$10</span></li>
+      <li><span>Wiping kitchen counters</span><span>$5</span></li>
+      <li><span>Watering outdoor plants</span><span>$5</span></li>
+      <li><span>Organizing school supplies</span><span>$6</span></li>
+      <li><span>Cleaning car interiors</span><span>$10</span></li>
+      <li><span>Tidying up porch area</span><span>$7</span></li>
+      <li><span>Polishing door handles</span><span>$4</span></li>
+    </ul>
+  </div>
+
+  <div class="section" id="about">
+    <h2>About Us</h2>
+    <p>Local Service is a small initiative to encourage young helpers to take on simple, safe, and responsible tasks around their neighborhood. We believe that with the right attitude and supervision, kids can develop valuable life skills and a strong sense of responsibility.</p>
+    <p><strong>Sudhendra</strong> – A friendly local helper who started this initiative to give kids a chance to learn responsibility and earn a little money through simple tasks.</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Contact <strong>Sudhendra</strong> at <a href="tel:022885171900">022 885 171900</a></p>
+  </div>
+
+  <footer>
+    © 2025 Local Service. All rights reserved.
+  </footer>
+
+</body>
+</html>
