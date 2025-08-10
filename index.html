@@ -65,6 +65,34 @@
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    ul.services-list li > .service-name {
+      flex-grow: 1;
+    }
+
+    .book-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 120px; /* fixed width to align all */
+      justify-content: flex-end;
+    }
+
+    button.book-btn {
+      background: #228be6;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button.book-btn:hover {
+      background: #1864ab;
     }
 
     footer {
@@ -83,6 +111,49 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .book-group {
+        min-width: auto;
+        margin-top: 8px;
+        justify-content: flex-start;
+      }
+    }
+
+    /* Popup styling */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #popup-content {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      max-width: 320px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    #popup-content p {
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+    #popup-content button {
+      background: #228be6;
+      border: none;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    #popup-content button:hover {
+      background: #1864ab;
     }
   </style>
 </head>
@@ -101,26 +172,86 @@
   <div class="section" id="services">
     <h2>Services</h2>
     <ul class="services-list">
-      <li><span>Car washing</span><span>$15</span></li>
-      <li><span>Garden cleaning</span><span>$20</span></li>
-      <li><span>Window cleaning</span><span>$10</span></li>
-      <li><span>Mailbox cleaning</span><span>$5</span></li>
-      <li><span>Trash bin rinsing</span><span>$8</span></li>
-      <li><span>Patio sweeping</span><span>$10</span></li>
-      <li><span>Toy cleanup</span><span>$6</span></li>
-      <li><span>Garage tidying</span><span>$15</span></li>
-      <li><span>Bike cleaning</span><span>$8</span></li>
-      <li><span>Recycling sorting</span><span>$6</span></li>
-      <li><span>Sweeping driveway</span><span>$9</span></li>
-      <li><span>Organizing books</span><span>$7</span></li>
-      <li><span>Dusting shelves</span><span>$6</span></li>
-      <li><span>Cleaning outdoor furniture</span><span>$10</span></li>
-      <li><span>Wiping kitchen counters</span><span>$5</span></li>
-      <li><span>Watering outdoor plants</span><span>$5</span></li>
-      <li><span>Organizing school supplies</span><span>$6</span></li>
-      <li><span>Cleaning car interiors</span><span>$10</span></li>
-      <li><span>Tidying up porch area</span><span>$7</span></li>
-      <li><span>Polishing door handles</span><span>$4</span></li>
+      <li>
+        <span class="service-name">Car washing</span>
+        <div class="book-group"><span>$15</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Garden cleaning</span>
+        <div class="book-group"><span>$20</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Window cleaning</span>
+        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Mailbox cleaning</span>
+        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Trash bin rinsing</span>
+        <div class="book-group"><span>$8</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Patio sweeping</span>
+        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Toy cleanup</span>
+        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Garage tidying</span>
+        <div class="book-group"><span>$15</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Bike cleaning</span>
+        <div class="book-group"><span>$8</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Recycling sorting</span>
+        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Sweeping driveway</span>
+        <div class="book-group"><span>$9</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Organizing books</span>
+        <div class="book-group"><span>$7</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Dusting shelves</span>
+        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Cleaning outdoor furniture</span>
+        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Wiping kitchen counters</span>
+        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Watering outdoor plants</span>
+        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Organizing school supplies</span>
+        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Cleaning car interiors</span>
+        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Tidying up porch area</span>
+        <div class="book-group"><span>$7</span><button class="book-btn">Book</button></div>
+      </li>
+      <li>
+        <span class="service-name">Polishing door handles</span>
+        <div class="book-group"><span>$4</span><button class="book-btn">Book</button></div>
+      </li>
     </ul>
   </div>
 
@@ -139,5 +270,30 @@
     © 2025 Local Service. All rights reserved.
   </footer>
 
+  <div id="popup">
+    <div id="popup-content">
+      <p><strong>Contact to Book</strong></p>
+      <p>Call or text Sudhendra at 022885171900 to arrange a booking.</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.book-btn');
+    const popup = document.getElementById('popup');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        popup.style.display = 'flex';
+      });
+    });
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+  </script>
+
 </body>
 </html>
+
+
