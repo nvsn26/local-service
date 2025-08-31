@@ -23,6 +23,12 @@
       text-align: center;
     }
 
+    #local-time {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
     nav {
       background: #228be6;
       display: flex;
@@ -55,6 +61,36 @@
       margin-top: 0;
     }
 
+    .weather-check {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .weather-btn {
+      background: #f39c12;
+      border: none;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      font-size: 1rem;
+    }
+
+    .weather-btn:hover {
+      background: #d98c0a;
+    }
+
+    .weather-check input {
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 8px;
+    }
+
     ul.services-list {
       list-style: none;
       padding: 0;
@@ -68,15 +104,11 @@
       align-items: center;
     }
 
-    ul.services-list li > .service-name {
-      flex-grow: 1;
-    }
-
     .book-group {
       display: flex;
       align-items: center;
       gap: 10px;
-      min-width: 120px; /* fixed width to align all */
+      min-width: 120px;
       justify-content: flex-end;
     }
 
@@ -101,26 +133,7 @@
       color: #666;
     }
 
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      ul.services-list li {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .book-group {
-        min-width: auto;
-        margin-top: 8px;
-        justify-content: flex-start;
-      }
-    }
-
-    /* Popup styling */
-    #popup {
+    #popup, #weather-popup {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -130,7 +143,7 @@
       align-items: center;
       z-index: 1000;
     }
-    #popup-content {
+    #popup-content, #weather-content {
       background: white;
       padding: 20px 30px;
       border-radius: 10px;
@@ -138,11 +151,8 @@
       text-align: center;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
-    #popup-content p {
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-    }
-    #popup-content button {
+    #popup-content button, #weather-content button {
+      margin-top: 1rem;
       background: #228be6;
       border: none;
       color: white;
@@ -150,9 +160,8 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s;
     }
-    #popup-content button:hover {
+    #popup-content button:hover, #weather-content button:hover {
       background: #1864ab;
     }
   </style>
@@ -161,6 +170,7 @@
 
   <header>
     <h1>Local Service</h1>
+    <p id="local-time"></p>
   </header>
 
   <nav>
@@ -171,87 +181,36 @@
 
   <div class="section" id="services">
     <h2>Services</h2>
+
+    <!-- Weather search + button -->
+    <div class="weather-check">
+      <div>
+        <input type="text" id="city-input" placeholder="Enter city..." />
+      </div>
+      <button id="weather-btn" class="weather-btn">Check Weather</button>
+    </div>
+
     <ul class="services-list">
-      <li>
-        <span class="service-name">Car washing</span>
-        <div class="book-group"><span>$15</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Garden cleaning</span>
-        <div class="book-group"><span>$20</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Window cleaning</span>
-        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Mailbox cleaning</span>
-        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Trash bin rinsing</span>
-        <div class="book-group"><span>$8</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Patio sweeping</span>
-        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Toy cleanup</span>
-        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Garage tidying</span>
-        <div class="book-group"><span>$15</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Bike cleaning</span>
-        <div class="book-group"><span>$8</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Recycling sorting</span>
-        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Sweeping driveway</span>
-        <div class="book-group"><span>$9</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Organizing books</span>
-        <div class="book-group"><span>$7</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Dusting shelves</span>
-        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Cleaning outdoor furniture</span>
-        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Wiping kitchen counters</span>
-        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Watering outdoor plants</span>
-        <div class="book-group"><span>$5</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Organizing school supplies</span>
-        <div class="book-group"><span>$6</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Cleaning car interiors</span>
-        <div class="book-group"><span>$10</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Tidying up porch area</span>
-        <div class="book-group"><span>$7</span><button class="book-btn">Book</button></div>
-      </li>
-      <li>
-        <span class="service-name">Polishing door handles</span>
-        <div class="book-group"><span>$4</span><button class="book-btn">Book</button></div>
-      </li>
+      <li><span>Car washing</span><div class="book-group"><span>$15</span><button class="book-btn">Book</button></div></li>
+      <li><span>Garden cleaning</span><div class="book-group"><span>$20</span><button class="book-btn">Book</button></div></li>
+      <li><span>Window cleaning</span><div class="book-group"><span>$10</span><button class="book-btn">Book</button></div></li>
+      <li><span>Mailbox cleaning</span><div class="book-group"><span>$5</span><button class="book-btn">Book</button></div></li>
+      <li><span>Trash bin rinsing</span><div class="book-group"><span>$8</span><button class="book-btn">Book</button></div></li>
+      <li><span>Patio sweeping</span><div class="book-group"><span>$10</span><button class="book-btn">Book</button></div></li>
+      <li><span>Toy cleanup</span><div class="book-group"><span>$6</span><button class="book-btn">Book</button></div></li>
+      <li><span>Garage tidying</span><div class="book-group"><span>$15</span><button class="book-btn">Book</button></div></li>
+      <li><span>Bike cleaning</span><div class="book-group"><span>$8</span><button class="book-btn">Book</button></div></li>
+      <li><span>Recycling sorting</span><div class="book-group"><span>$6</span><button class="book-btn">Book</button></div></li>
+      <li><span>Sweeping driveway</span><div class="book-group"><span>$9</span><button class="book-btn">Book</button></div></li>
+      <li><span>Organizing books</span><div class="book-group"><span>$7</span><button class="book-btn">Book</button></div></li>
+      <li><span>Dusting shelves</span><div class="book-group"><span>$6</span><button class="book-btn">Book</button></div></li>
+      <li><span>Cleaning outdoor furniture</span><div class="book-group"><span>$10</span><button class="book-btn">Book</button></div></li>
+      <li><span>Wiping kitchen counters</span><div class="book-group"><span>$5</span><button class="book-btn">Book</button></div></li>
+      <li><span>Watering outdoor plants</span><div class="book-group"><span>$5</span><button class="book-btn">Book</button></div></li>
+      <li><span>Organizing school supplies</span><div class="book-group"><span>$6</span><button class="book-btn">Book</button></div></li>
+      <li><span>Cleaning car interiors</span><div class="book-group"><span>$10</span><button class="book-btn">Book</button></div></li>
+      <li><span>Tidying up porch area</span><div class="book-group"><span>$7</span><button class="book-btn">Book</button></div></li>
+      <li><span>Polishing door handles</span><div class="book-group"><span>$4</span><button class="book-btn">Book</button></div></li>
     </ul>
   </div>
 
@@ -270,6 +229,7 @@
     © 2025 Local Service. All rights reserved.
   </footer>
 
+  <!-- Booking Popup -->
   <div id="popup">
     <div id="popup-content">
       <p><strong>Contact to Book</strong></p>
@@ -278,9 +238,30 @@
     </div>
   </div>
 
+  <!-- Weather Popup -->
+  <div id="weather-popup">
+    <div id="weather-content">
+      <p><strong>Current Weather</strong></p>
+      <p id="weather-result">Loading...</p>
+      <button onclick="closeWeatherPopup()">Close</button>
+    </div>
+  </div>
+
   <script>
+    // Local time
+    function updateLocalTime() {
+      const now = new Date();
+      document.getElementById('local-time').textContent = now.toLocaleString();
+    }
+    updateLocalTime();
+    setInterval(updateLocalTime, 1000);
+
+    // Popups
     const buttons = document.querySelectorAll('.book-btn');
     const popup = document.getElementById('popup');
+    const weatherBtn = document.getElementById('weather-btn');
+    const weatherPopup = document.getElementById('weather-popup');
+    const weatherResult = document.getElementById('weather-result');
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -291,9 +272,32 @@
     function closePopup() {
       popup.style.display = 'none';
     }
+    function closeWeatherPopup() {
+      weatherPopup.style.display = 'none';
+    }
+
+    // Weather
+    const apiKey = "e9f6767df1367e8fc62a46820733b2df";
+    weatherBtn.addEventListener('click', () => {
+      const city = document.getElementById('city-input').value.trim() || "Auckland";
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.cod === 200) {
+            weatherResult.textContent = `${data.weather[0].description}, ${data.main.temp}°C in ${data.name}`;
+          } else {
+            weatherResult.textContent = "City not found.";
+          }
+        })
+        .catch(() => {
+          weatherResult.textContent = "Error fetching weather.";
+        });
+      weatherPopup.style.display = 'flex';
+    });
   </script>
 
 </body>
 </html>
+
 
 
